@@ -2,6 +2,10 @@
   <div class="home">
     <div class="container">
       <span class="title">Meu quadro de tarefas</span>
+      <span class="title">Meu quadro de tarefas</span>
+      <span class="title">Meu quadro de tarefas</span>
+      <span class="title">Meu quadro de tarefas</span>
+      <span class="title">Meu quadro de tarefas</span>
     </div>
   </div>
 </template>
@@ -17,6 +21,6 @@
   font-size: 50px;
   font-weight: 700;
   color: #000;
-  font-family: sans-serif;
+  font-family: sans-serif, Nunito;
 }
 </style>
