@@ -6,6 +6,13 @@
       <span class="title">Meu quadro de tarefas</span>
       <span class="title">Meu quadro de tarefas</span>
       <span class="title">Meu quadro de tarefas</span>
+      <span class="title">Meu quadro de tarefas</span>
+      <span class="title">Meu quadro de tarefas</span>
+      <span class="title">Meu quadro de tarefas</span>
+      <span class="title">Meu quadro de tarefas</span>
+      <span class="title">Meu quadro de tarefas</span>
+      <span class="title">Meu quadro de tarefas</span>
+      <span class="title">Meu quadro de tarefas</span>
     </div>
   </div>
 </template>
