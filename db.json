@@ -1,0 +1,71 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "João",
+      "idade": 25
+    },
+    {
+      "id": 2,
+      "nome": "Maria",
+      "idade": 30
+    },
+    {
+      "id": 3,
+      "nome": "Carlos",
+      "idade": 28
+    }
+  ],
+  "tarefas": [
+    {
+      "id": 1,
+      "item": "fazer um bolo",
+      "categoria": "casa"
+    },
+    {
+      "id": 2,
+      "item": "lavar o carro",
+      "categoria": "trabalho"
+    },
+    {
+      "id": 3,
+      "item": "fazer o almoço",
+      "categoria": "diversão"
+    },
+    {
+      "id": "3333",
+      "item": "testabdo",
+      "categoria": "teste"
+    },
+    {
+      "id": 48,
+      "item": "mais um teste",
+      "categoria": "teste"
+    },
+    {
+      "id": 11,
+      "item": "lavar o carro",
+      "categoria": "teste"
+    },
+    {
+      "id": 2,
+      "item": "fazer compras",
+      "categoria": "teste"
+    },
+    {
+      "id": 35,
+      "item": "comprar",
+      "categoria": "teste"
+    },
+    {
+      "id": 44,
+      "item": "teste 1",
+      "categoria": "teste"
+    },
+    {
+      "id": 41,
+      "item": "teste 2",
+      "categoria": "teste"
+    }
+  ]
+}
