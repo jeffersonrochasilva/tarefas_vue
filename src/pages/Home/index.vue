@@ -1,59 +1,51 @@
 <template>
   <div class="home">
-    <Navbar />
-    <div class="content">
-      <div class="boxTitle">
-        <span class="title">Meu quadro de tarefas</span>
+    <Header />
+    <div class="contentHome">
+      <Navbar />
+      <div class="content">
+        <BoxTitle />
+        <Camp v-if="steptableValue === 1" />
+        <Table v-if="steptableValue === 2" />
       </div>
-      <div class="teste">
-        <Camp />
-        <Button />
-      </div>
-      <div class="boxcontent">
-        <ContentList />
-      </div>
-      <!-- <div v-else>
-        <Nodate />
-      </div> -->
-      <!-- <h1>{{ dataFile.length }}</h1> -->
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import Navbar from "../../components/Navbar/index.vue";
+import Table from "../../components/Table/index.vue";
+import BoxTitle from "../../components/commom/BoxTitle/index.vue";
 import Camp from "../../components/commom/Camp/index.vue";
-import Button from "../../components/commom/Buttoncuston/index.vue";
-import ContentList from "../../components/Contentlist/pindex.vue";
-import Nodate from "../../components/Nodate/index.vue";
-import { useGeneralStore } from "../../store/general";
+import Header from "../../components/Header/index.vue";
 import { computed } from "vue";
+import { useGeneralStore } from "../../store/general";
 const generalStore = useGeneralStore();
-const dataFile = computed(() => {
-  return generalStore.data;
-});
-const valueData = computed(() => {
-  if (dataFile.value.length > 0) {
-    return true;
-  } else {
-    return false;
-  }
+
+const steptableValue = computed(() => {
+  return generalStore.stepTable;
 });
 </script>
 <style scoped>
 .home {
   width: 100%;
-  display: flex;
   height: 100vh;
   background: rgb(225, 224, 224);
 }
+.contentHome {
+  width: 100%;
+  height: calc(100vh - 60px);
+  background: rgb(246, 244, 244);
+  display: flex;
+  align-items: center;
+}
 .content {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 20px;
-  width: calc(100% - 440px);
-  height: calc(100% - 40px);
+  flex-direction: column;
+  justify-content: center;
+  width: calc(100%);
+  height: calc(100vh - 60px);
 }
 .title {
   font-family: Nunito;

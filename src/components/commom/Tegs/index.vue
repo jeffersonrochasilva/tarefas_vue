@@ -7,7 +7,6 @@
   width: 100px;
   height: 30px;
   border-radius: 50px;
-  background: red;
   display: flex;
   justify-content: center;
   align-items: center;
