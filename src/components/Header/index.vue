@@ -19,7 +19,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useGeneralStore } from "../../store/general";
 const itens = ref("");
 
@@ -40,8 +40,6 @@ const generalStore = useGeneralStore();
 const setStoregeneral = () => {
   generalStore.setGeneralStore();
 };
-
-const selectItemInTable = () => {};
 </script>
 <style scoped>
 .header {
