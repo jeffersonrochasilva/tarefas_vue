@@ -7,14 +7,11 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, computed } from "vue";
+import { onMounted } from "vue";
 import { useGeneralStore } from "../../store/general";
 const generalStore = useGeneralStore();
 onMounted(() => {
   generalStore.getItemsInJson();
-});
-const tarefas = computed(() => {
-  return generalStore.data;
 });
 </script>
 <style scoped>
