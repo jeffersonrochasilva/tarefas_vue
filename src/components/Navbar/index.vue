@@ -1,11 +1,14 @@
 <template>
-  <div :class="generalStore.stepheader ? 'relative' : 'relative-two'">
+  <div
+    :class="generalStore.stepheader ? 'relative' : 'relative-two'"
+    :style="{ background: generalStore.background }"
+  >
     <transition name="slide">
       <aside
         v-if="generalStore.stepheader"
         class="fixed top-0 left-0 h-full w-64 bg-gray-800 text-white shadow-lg p-4 z-50"
       >
-        <ul class="space-y-3">
+        <ul style="margin-right: 25px">
           <li
             :class="stepItem === 1 ? 'item-selected' : 'item'"
             @click="setStep(1)"
@@ -26,7 +29,7 @@
           </li>
           <li
             :class="stepItem === 4 ? 'item-selected' : 'item'"
-            @click="setStep(4)"
+            @click="router.replace('/')"
           >
             Sair
           </li>
@@ -39,10 +42,14 @@
 <script setup>
 import { ref } from "vue";
 import { useGeneralStore } from "../../store/general";
+import { useRouter } from "vue-router";
 const generalStore = useGeneralStore();
-
-const stepItem = ref(1);
+const router = useRouter();
+const stepItem = ref(2);
 const setStep = (item) => {
+  if (item === 1) {
+    return (generalStore.stepregister = true);
+  }
   stepItem.value = item;
   generalStore.setStepTable(item);
 };
@@ -50,23 +57,21 @@ const setStep = (item) => {
 
 <style scoped>
 .relative {
-  width: 300px;
   height: calc(100vh - 100px);
   padding: 20px;
-  background: #2692e6;
-  transition: transform 0.4s ease;
+  transition: all 0.4s ease;
+  transform-origin: right;
 }
 .relative-two {
-  transform: scaleX(0.6);
+  transition: all 0.4s ease;
+  transform-origin: left;
   height: calc(100vh - 100px);
   padding: 20px;
-  background: #87ceeb;
 }
-/* Animação tipo "leque" — abre da esquerda com suavidade */
 .slide-enter-active,
 .slide-leave-active {
   transition: all 0.4s ease;
-  transform-origin: left center;
+  transform-origin: left;
 }
 .slide-enter-from {
   transform: scaleX(0);
@@ -101,5 +106,13 @@ const setStep = (item) => {
 }
 li {
   cursor: pointer;
+}
+@media (max-width: 545px) {
+  .relative {
+    position: absolute;
+  }
+  .relative-two {
+    position: absolute;
+  }
 }
 </style>

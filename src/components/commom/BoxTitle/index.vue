@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <span v-if="generalStore.stepTable === 1" class="title">Cadastro</span>
-    <span v-else-if="generalStore.stepTable === 2" class="title">Tabela</span>
+    <span v-else-if="generalStore.stepTable === 2" class="title"
+      >Tabela de produtos</span
+    >
   </div>
 </template>
 
@@ -12,7 +14,6 @@ const generalStore = useGeneralStore();
 
 <style scoped>
 .container {
-  /* position: fixed; */
   top: 60px;
   width: 200px;
   height: 100px;

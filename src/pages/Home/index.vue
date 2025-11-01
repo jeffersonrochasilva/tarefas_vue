@@ -5,8 +5,9 @@
       <Navbar />
       <div class="content">
         <BoxTitle />
-        <Camp v-if="steptableValue === 1" />
+        <Camp v-if="generalStore.stepregister" />
         <Table v-if="steptableValue === 2" />
+        <Configue v-if="steptableValue === 3" />
       </div>
     </div>
   </div>
@@ -15,6 +16,7 @@
 <script lang="ts" setup>
 import Navbar from "../../components/Navbar/index.vue";
 import Table from "../../components/Table/index.vue";
+import Configue from "../../components/Configue/index.vue";
 import BoxTitle from "../../components/commom/BoxTitle/index.vue";
 import Camp from "../../components/commom/Camp/index.vue";
 import Header from "../../components/Header/index.vue";
@@ -43,7 +45,7 @@ const steptableValue = computed(() => {
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   width: calc(100%);
   height: calc(100vh - 60px);
 }

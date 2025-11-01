@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header" :style="{ background: generalStore.background }">
     <div class="boxTitle">
       <span class="title">Lista de produtos</span>
       <i
@@ -8,7 +8,7 @@
         @click="setStoregeneral()"
       ></i>
     </div>
-    <div>
+    <div class="box_camp">
       <input class="campfind" placeholder="Nome do item" v-model="itens" />
       <i
         class="fas fa-search"
@@ -19,7 +19,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import { useGeneralStore } from "../../store/general";
 const itens = ref("");
 
@@ -28,7 +28,7 @@ const itensFiltrados = () => {
 
   if (!termo) return itens.value;
 
-  const res = generalStore.dataTable.filter((item) =>
+  const res = generalStore.dataTable.filter((item: any) =>
     item.nome.toLowerCase().includes(termo)
   );
   console.log(...res, itens.value, "res");
@@ -46,7 +46,6 @@ const setStoregeneral = () => {
   width: calc(100% - 140px);
   height: 60px;
   padding: 0 70px;
-  background: #2692e6;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -63,8 +62,12 @@ const setStoregeneral = () => {
   margin: 0;
   padding: 0;
 }
+.box_camp {
+  display: flex;
+  align-items: center;
+}
 .campfind {
-  margin-right: 30px;
+  margin: 0 30px 0 0;
   border-radius: 10px;
   border-style: none;
   color: gray;
@@ -73,5 +76,14 @@ const setStoregeneral = () => {
   height: 25px;
   width: 250px;
   cursor: pointer;
+}
+@media (max-width: 620px) {
+  .title {
+    display: none;
+  }
+  .header {
+    width: calc(100% - 60px);
+    padding: 0 30px;
+  }
 }
 </style>

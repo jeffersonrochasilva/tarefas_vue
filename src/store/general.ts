@@ -10,10 +10,12 @@ interface Tarefas {
 export const useGeneralStore = defineStore("general", () => {
   const count = ref(0);
   const stepheader = ref(true);
+  const stepregister = ref(false);
   const stepUpdate = ref(false);
-  const stepTable = ref(1);
+  const stepTable = ref(2);
   const dataTable = ref([]);
   const dataUpdate = ref({});
+  const background = ref("#2692e6");
   let data = ref<Tarefas[]>([]);
 
   const doubleCount = computed(() => count.value * 2);
@@ -50,11 +52,13 @@ export const useGeneralStore = defineStore("general", () => {
   return {
     count,
     stepheader,
+    background,
     data,
     dataTable,
     doubleCount,
     stepTable,
     dataUpdate,
+    stepregister,
     stepUpdate,
     increment,
     setDataTable,

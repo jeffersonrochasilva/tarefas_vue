@@ -2,7 +2,7 @@
   <div class="table-wrapper">
     <div class="table-card">
       <table class="responsive-table">
-        <thead>
+        <thead :style="{ background: generalStore.background }">
           <tr>
             <th>ID</th>
             <th>Nome</th>
@@ -19,7 +19,10 @@
             <td class="cell-desc">{{ item.descricao }}</td>
             <td class="cell-preco">{{ formatCurrency(item.preco) }}</td>
             <td class="cell-valor">
-              <i class="fas fa-trash icon-delete" @click="deleteItem(item)"></i>
+              <i
+                class="fas fa-trash icon-delete"
+                @click="deleteItemInTable(item)"
+              ></i>
               <i
                 class="fas fa-edit icon-edit"
                 @click="getItemInTable(item)"
@@ -35,26 +38,16 @@
 <script setup>
 import { computed, onMounted } from "vue";
 import { useGeneralStore } from "../../store/general";
+import { getitems, deleteItem } from "../../services/ActivitiesService.js";
 import axios from "axios";
-
 const generalStore = useGeneralStore();
 
 const dataTable = computed(() => generalStore.dataTable);
 
-const fetchItems = async () => {
+const deleteItemInTable = async (item) => {
   try {
-    const { data } = await axios.get("http://localhost:8081/");
-    generalStore.setDataTable(data);
-  } catch (error) {
-    console.error("Erro ao buscar produtos:", error);
-  }
-};
-
-const deleteItem = async (item) => {
-  try {
-    await axios.delete(`http://localhost:8081/${item.id}`);
-    alert("Item excluído com sucesso!");
-    fetchItems();
+    await deleteItem(item.id);
+    await getItem();
   } catch (error) {
     console.error("Erro ao excluir item:", error);
   }
@@ -71,10 +64,19 @@ const getItemInTable = (item) => {
   generalStore.setDataUpdate(item);
   generalStore.stepUpdate = true;
   generalStore.stepTable = 1;
-  console.log("primeiro console", item);
+};
+const getItem = async () => {
+  try {
+    const response = await getitems();
+    generalStore.dataTable = response;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-onMounted(fetchItems);
+onMounted(async () => {
+  await getItem();
+});
 </script>
 
 <style scoped>
@@ -114,6 +116,7 @@ onMounted(fetchItems);
 }
 
 .responsive-table th {
+  color: #fff;
   font-weight: 600;
 }
 
@@ -121,7 +124,6 @@ onMounted(fetchItems);
   background: rgba(15, 23, 42, 0.02);
 }
 
-/* Colunas */
 .cell-id {
   width: 80px;
   font-weight: 600;
@@ -146,7 +148,6 @@ onMounted(fetchItems);
   justify-content: space-around;
 }
 
-/* Ícones */
 i {
   cursor: pointer;
   transition: 0.2s;
@@ -164,8 +165,7 @@ i {
   color: #5a3210;
 }
 
-/* Responsivo */
-@media (max-width: 520px) {
+@media (max-width: 970px) {
   .responsive-table {
     display: block;
     min-width: 100%;
