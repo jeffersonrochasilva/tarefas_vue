@@ -12,12 +12,10 @@ interface Usuario {
   avatar: string;
 }
 
-// Criamos uma cópia reativa para o formulário
 const form = ref<Usuario>({ id: 0, nome: "", email: "", avatar: "" });
 
 const salvarEdicao = async () => {
   console.log("Enviando para o servidor:", form.value);
-  // alert("Usuário atualizado com sucesso!");
 
   try {
     await axios.put(
@@ -32,7 +30,6 @@ const salvarEdicao = async () => {
 };
 
 const cancelar = () => {
-  // Reseta o formulário para os dados originais
   form.value = { id: 0, nome: "", email: "", avatar: "" };
 };
 
@@ -42,7 +39,6 @@ onMounted(() => {
       const response = await axios.get("http://localhost:3000/form");
 
       console.log("teste,", response.data);
-      // data.value = response.data;
       const arr = response.data;
       console.log("fdgfhhdgfhd", arr);
       const obj = arr.campos.filter(
