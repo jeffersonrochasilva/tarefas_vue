@@ -18,11 +18,13 @@ const salvarEdicao = async () => {
   console.log("Enviando para o servidor:", form.value);
 
   try {
+    console.log("Resposta do servidor:", form.value);
     await axios.put(
       `http://localhost:3000/addform/${form.value.id}`,
       form.value,
     );
-    console.log("Usuário atualizado com sucesso no servidor!");
+    console.log("Resposta do servidor:", form.value);
+    // console.log("Usuário atualizado com sucesso no servidor!");
   } catch (error) {
     console.error("Erro ao atualizar usuário:", error);
     alert("Ocorreu um erro ao atualizar o usuário. Tente novamente.");
@@ -38,12 +40,14 @@ onMounted(() => {
     try {
       const response = await axios.get("http://localhost:3000/form");
 
-      console.log("teste,", response.data);
+      console.log("teste,", router.params.id);
       const arr = response.data;
-      console.log("fdgfhhdgfhd", arr);
+      console.log("fdgfhhdgfhd", arr.campos);
+
       const obj = arr.campos.filter(
-        (item: Usuario) => item.id === Number(router.params.id),
+        (item: Usuario) => item.id == router.params.id,
       );
+
       console.log("Objeto encontrado:", obj);
 
       if (obj.length > 0) {
@@ -87,12 +91,18 @@ onMounted(() => {
         </div>
 
         <div class="input-group">
-          <label for="cargo">avatar / Função</label>
-          <select id="cargo" v-model="form.avatar">
+          <label for="cargo">avatar</label>
+          <input
+            id="cargo"
+            v-model="form.avatar"
+            type="text"
+            placeholder="avatar do usuário "
+          />
+          <!-- <select id="cargo" v-model="form.avatar">
             <option>Desenvolvedor Full Stack</option>
             <option>Designer UI/UX</option>
             <option>Gerente de Projetos</option>
-          </select>
+          </select> -->
         </div>
 
         <div class="form-actions">
